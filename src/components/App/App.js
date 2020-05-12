@@ -9,6 +9,9 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
+import EntryIndex from '../EntryIndex/EntryIndex'
+import EntryCreate from '../EntryCreate/EntryCreate'
+
 class App extends Component {
   constructor () {
     super()
@@ -41,19 +44,34 @@ class App extends Component {
             message={msgAlert.message}
           />
         ))}
+
         <main className="container">
+          <Route path="/" user={this.state.user} render={() => (
+            <h3>Home page</h3>
+          )}/>
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
+
+          {/* AuthenticatedRoute */}
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
+
+          {/* <UserContext.Provider> */}
+          <AuthenticatedRoute user={user} path ='/entries' render={() => (
+            <EntryIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path ='/create-entry' render={() => (
+            <EntryCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          {/* </UserContext.Provider> */}
         </main>
       </Fragment>
     )
