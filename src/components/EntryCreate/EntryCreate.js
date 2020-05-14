@@ -3,8 +3,9 @@ import { Redirect } from 'react-router-dom'
 
 import { entryCreate } from '../../api/entries'
 import EntryForm from '../shared/EntryForm'
+import messages from '../AutoDismissAlert/messages'
 
-const EntryCreate = ({ user }) => {
+const EntryCreate = ({ user, msgAlert }) => {
   const [entry, setEntry] = useState({
     date: '',
     activity: '',
@@ -22,11 +23,28 @@ const EntryCreate = ({ user }) => {
     event.preventDefault()
     entryCreate(user, entry)
       .then(res => setCreatedEntryId(res.data.entry.id))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Create Entry Succesfully',
+        message: messages.createSuccess,
+        variant: 'success'
+      }))
+      .catch(error => {
+        setEntry({
+          date: '',
+          activity: '',
+          duration: '',
+          note: ''
+        })
+        msgAlert({
+          heading: 'Create Failed, error: ' + error.message,
+          message: messages.createFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   if (createdEntryId) {
-    return <Redirect to={`entries/${createdEntryId}`} />
+    return <Redirect to={`/entries/${createdEntryId}`} />
   }
 
   return (

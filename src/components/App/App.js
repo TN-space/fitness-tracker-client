@@ -10,7 +10,9 @@ import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
 import EntryIndex from '../EntryIndex/EntryIndex'
+import EntryShow from '../EntryShow/EntryShow'
 import EntryCreate from '../EntryCreate/EntryCreate'
+import EntryUpdate from '../EntryUpdate/EntryUpdate'
 
 class App extends Component {
   constructor () {
@@ -64,14 +66,18 @@ class App extends Component {
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
 
-          {/* <UserContext.Provider> */}
-          <AuthenticatedRoute user={user} path ='/entries' render={() => (
+          <AuthenticatedRoute user={user} exact path ='/entries' render={() => (
             <EntryIndex msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path ='/create-entry' render={() => (
+          <AuthenticatedRoute user={user} exact path ='/entries/:id' render={({ match }) => (
+            <EntryShow msgAlert={this.msgAlert} user={user} id={match.params.id}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path ='/create-entry' render={() => (
             <EntryCreate msgAlert={this.msgAlert} user={user} />
           )} />
-          {/* </UserContext.Provider> */}
+          <AuthenticatedRoute user={user} exact path ='/entries/:id/update-entry' render={({ match }) => (
+            <EntryUpdate msgAlert={this.msgAlert} user={user} id={match.params.id}/>
+          )} />
         </main>
       </Fragment>
     )

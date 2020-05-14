@@ -87,4 +87,5 @@ class SignIn extends Component {
   }
 }
 
+// withRouter will allow the usage of: location, match, and history
 export default withRouter(SignIn)

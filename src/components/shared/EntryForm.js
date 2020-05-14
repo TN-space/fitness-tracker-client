@@ -36,7 +36,7 @@ const EntryForm = ({ entry, handleSubmit, handleChange, cancelPath }) => (
       onChange={handleChange}
     /><br/>
 
-    <button type="submit">Create</button>
+    <button type="submit">Save</button>
     <Link to={cancelPath}>
       <button>Cancel</button>
     </Link><br/>
