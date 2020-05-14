@@ -43,6 +43,13 @@ const EntryShow = ({ id, user, msgAlert }) => {
       })
   }
 
+  const glow = {
+    boxShadow: '0 0 5px rgba(81, 203, 238, 1)',
+    padding: '3px 0px 3px 3px',
+    margin: '5px 1px 3px 0px',
+    border: '1px solid rgba(81, 203, 238, 1)'
+  }
+
   if (!entry) {
     return 'loading...'
   }
@@ -52,11 +59,14 @@ const EntryShow = ({ id, user, msgAlert }) => {
   }
 
   const oneEntry = (
-    <div>
-      <h3>Date:{entry.date}</h3>
-      <h5>Activity:{entry.activity}</h5>
-      <h5>Duration:{entry.duration}</h5>
-      <h5>Note:{entry.note}</h5>
+    <div style={glow}>
+      <h3>Date: {entry.date}</h3>
+      <h5>Activity: {entry.activity}</h5>
+      <h5>Duration: {entry.duration}</h5>
+      <h5>Note: {entry.note}</h5>
+      <Link to={'/entries'}>
+        <Button>View all</Button>
+      </Link>
       <Link to={`/entries/${entry.id}/update-entry`}>
         <Button>Update</Button>
       </Link>

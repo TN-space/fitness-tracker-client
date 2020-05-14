@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import { entryCreate } from '../../api/entries'
-import EntryForm from '../shared/EntryForm'
+import CreateEntryForm from './CreateEntryForm'
 import messages from '../AutoDismissAlert/messages'
 
 const EntryCreate = ({ user, msgAlert }) => {
@@ -49,11 +49,11 @@ const EntryCreate = ({ user, msgAlert }) => {
 
   return (
     <div>
-      <EntryForm
+      <CreateEntryForm
         entry={entry}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        cancelPath='/'
+        cancelPath='/entries'
       />
     </div>
   )

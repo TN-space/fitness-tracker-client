@@ -9,6 +9,9 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
+import AuthenticatedHome from '../Home/AuthenticatedHome'
+import UnauthenticatedHome from '../Home/UnauthenticatedHome'
+
 import EntryIndex from '../EntryIndex/EntryIndex'
 import EntryShow from '../EntryShow/EntryShow'
 import EntryCreate from '../EntryCreate/EntryCreate'
@@ -48,9 +51,7 @@ class App extends Component {
         ))}
 
         <main className="container">
-          <Route path="/" user={this.state.user} render={() => (
-            <h3>Home page</h3>
-          )}/>
+          <Route exact path="/home" user={this.state.user} component={UnauthenticatedHome}/>
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
@@ -59,6 +60,10 @@ class App extends Component {
           )} />
 
           {/* AuthenticatedRoute */}
+          <AuthenticatedRoute user={user} exact path='/' render={() => (
+            <AuthenticatedHome msgAlert={this.msgAlert} user={user} />
+          )} />
+
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />

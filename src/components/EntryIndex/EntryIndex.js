@@ -1,43 +1,46 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
 import Button from 'react-bootstrap/Button'
+// import Form from 'react-bootstrap/Form'
 
 // import a piece - entryIndex from a whole file - entries
 import { entryIndex } from '../../api/entries'
 // import a whole file - messages
 import messages from '../AutoDismissAlert/messages'
+import chillin from './../../images/chillinBear.jpg'
 
 const EntryIndex = ({ match, user, msgAlert }) => {
   const [entries, setEntries] = useState([])
   // const [deleted, setDeleted] = useState(false)
 
+  const img = {
+    backgroundImage: `url(${chillin})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    height: '90vh',
+    width: '100%'
+  }
+
+  const styles = {
+    color: '#FFD12A',
+    paddingTop: '15px',
+    paddingLeft: '15px',
+    paddingRight: '15px'
+    // background: '-webkit-linear-gradient(#FFFF99, #333)',
+    // webkitBackgroundClip: 'text',
+    // webkitTextFillColor: 'transparent'
+  }
+  const glow = {
+    boxShadow: '0 0 5px rgba(81, 203, 238, 1)',
+    padding: '3px 0px 3px 3px',
+    margin: '5px 1px 3px 0px',
+    border: '1px solid rgba(81, 203, 238, 1)'
+  }
+
   useEffect(() => {
     entryIndex(user)
       .then(res => setEntries(res.data.entries))
-      .then(() => msgAlert({
-        heading: 'Fetch Entries Succesfully',
-        message: messages.indexSuccess,
-        variant: 'success'
-      }))
-      // {
-      //   // Need FIXING!!!
-      //   console.log('entriesss', entries)
-      //   if (entries.length === 0) {
-      //     msgAlert({
-      //       heading: 'Failed to Fetch any entries',
-      //       message: messages.indexFailure,
-      //       variant: 'danger'
-      //     })
-      //   } else {
-      //     msgAlert({
-      //       heading: 'Fetch Entries Succesfully',
-      //       message: messages.indexSuccess,
-      //       variant: 'success'
-      //     })
-      //   }
-      // }
-    // )
-      // .then(() => history.push('/'))
       .catch(error => {
         msgAlert({
           heading: 'Fetch Entries Failed, error: ' + error.message,
@@ -52,7 +55,7 @@ const EntryIndex = ({ match, user, msgAlert }) => {
   }
 
   const eachEntry = entries.map(entry => (
-    <ul key={entry.id}>
+    <div key={entry.id} style={glow}>
       <h3>Date: {entry.date}</h3>
       <h5>Activity: {entry.activity}</h5>
       <h5>Duration: {entry.duration}</h5>
@@ -60,17 +63,16 @@ const EntryIndex = ({ match, user, msgAlert }) => {
       <Link to={`/entries/${entry.id}`}>
         <Button>View</Button>
       </Link>
-      <hr />
-    </ul>
+    </div>
   ))
 
   return (
-    <div>
-      <ul>
+    <div style={img}>
+      <div style={styles}>
         {eachEntry}
-      </ul>
+      </div>
     </div>
   )
 }
-//       <Button onClick={() => entryDelete(entry.id, user)}>Delete</Button>
+
 export default EntryIndex

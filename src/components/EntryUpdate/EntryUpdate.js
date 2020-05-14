@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 
 import { entryShow } from '../../api/entries'
-import EntryForm from '../shared/EntryForm'
+import UpdateEntryForm from './UpdateEntryForm'
 import messages from '../AutoDismissAlert/messages'
 
 import apiUrl from '../../apiConfig'
@@ -65,7 +65,7 @@ const EntryUpdate = ({ id, user, msgAlert }) => {
 
   return (
     <div>
-      <EntryForm
+      <UpdateEntryForm
         entry={entry}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
