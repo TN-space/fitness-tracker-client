@@ -14,7 +14,7 @@ An app to record your fitness progress, a user can:
 
 ### Planning Story
 #### Technologies Used
-- Back-end: Ruby on rails.
+- Back-end: Ruby on Rails.
 - Front-end: JavaScript, React, axois, hook, react-bootstrap, react-router-dom.
 
 #### User Stories
