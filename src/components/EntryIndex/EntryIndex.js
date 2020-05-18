@@ -23,7 +23,7 @@ const EntryIndex = ({ match, user, msgAlert }) => {
   }
 
   const styles = {
-    color: '#FFD12A',
+    color: '#000000',
     paddingTop: '15px',
     paddingLeft: '15px',
     paddingRight: '15px'
@@ -56,8 +56,8 @@ const EntryIndex = ({ match, user, msgAlert }) => {
 
   const eachEntry = entries.map(entry => (
     <div key={entry.id} style={glow}>
-      <h3>Date: {entry.date}</h3>
-      <h5>Activity: {entry.activity}</h5>
+      <h2>Date: {entry.date}</h2>
+      <h4>Activity: {entry.activity}</h4>
       <h5>Duration: {entry.duration}</h5>
       <h5>Note: {entry.note}</h5>
       <Link to={`/entries/${entry.id}`}>
