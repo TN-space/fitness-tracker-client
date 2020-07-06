@@ -23,7 +23,7 @@ const EntryIndex = ({ match, user, msgAlert }) => {
   }
 
   const styles = {
-    color: '#000000',
+    color: '#FFFF99',
     paddingTop: '15px',
     paddingLeft: '15px',
     paddingRight: '15px'
@@ -35,7 +35,9 @@ const EntryIndex = ({ match, user, msgAlert }) => {
     boxShadow: '0 0 5px rgba(81, 203, 238, 1)',
     padding: '3px 0px 3px 3px',
     margin: '5px 1px 3px 0px',
-    border: '1px solid rgba(81, 203, 238, 1)'
+    border: '1px solid rgba(81, 203, 238, 1)',
+    background: 'rgba(0, 0, 0, 0.5)'
+
   }
 
   useEffect(() => {
